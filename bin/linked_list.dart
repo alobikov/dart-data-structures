@@ -123,6 +123,23 @@ class LinkedList {
     return result;
   }
 
+  Node? getKthFromTheEnd(int kth) {
+    if (head == null) return throw Exception("No such node!");
+    var second = head;
+    var secondCnt = 1-(kth);
+    var  current =head;
+    while (current != null) {
+      if (secondCnt > 0) {
+        second = second!.next;
+      }
+      current=current.next;
+      print('$secondCnt, $current');
+      secondCnt++;
+    }
+    if (secondCnt <= 0) throw Exception("No such node!");
+    return second;
+  }
+
   @override
   String toString() {
     if (head == null) {
