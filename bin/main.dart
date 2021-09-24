@@ -1,23 +1,12 @@
 import './balanced_expression.dart';
 import './list_queue.dart';
+import './priority_queue.dart';
 
 void main() {
-var q = ListQueue();
-print(q);
-q.enqueue(1);
-q.enqueue(2);
-q.enqueue(3);
-q.enqueue(4);
-q.enqueue(5);
-print(q);
-print(q.dequeue());
-print(q.dequeue());
-print(q);
-q.enqueue(6);
-print(q);
-print(q.dequeue());
-print(q.dequeue());
-print(q.dequeue());
-print(q.dequeue());
-print('end');
+  var q = PriorityQueue(5);
+  q.add(2);
+  q.add(4);
+  q.add(3);
+  q.add(1);
+  print(q);
 }
