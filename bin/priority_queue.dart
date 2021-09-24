@@ -14,7 +14,13 @@ class PriorityQueue {
       return;
     }
 
-    var i = ptr++;
+    var idx = shiftItemsToInsert(value);
+    queue[idx] = value;
+    ptr++;
+  }
+
+  int shiftItemsToInsert(value) {
+    var i = ptr;
     while (i != 0) {
       if (value >= queue[i-1]) {
         break;
@@ -23,7 +29,7 @@ class PriorityQueue {
       }
       i--;
     }
-    queue[i] = value;
+    return i;
   }
 
   @override
