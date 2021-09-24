@@ -1,12 +1,10 @@
-import './linked_list.dart';
+import './balanced_expression.dart';
 
-void main(List<String> arguments) {
-  var linked = LinkedList();
-  // linked.addLast(10);
-  // linked.addLast(20);
-  // linked.addLast(30);
-  // linked.addLast(40);
-  linked.addLast(50);
-  final result = linked.getKthFromTheEnd(1);
-  print(result);
+void main() {
+
+final expr1= '(<e> + [33])';
+var expr= BalancedExpression('(123 (q)+1[],.<..>)');
+
+print(expr);
+print(expr.isBalanced());
 }
