@@ -19,6 +19,14 @@ class PriorityQueue {
     ptr++;
   }
 
+  int remove() {
+    if (ptr == 0) throw Exception("Operation not allowed");
+    int removed = queue[--ptr];
+    queue[ptr] = null;
+    return removed;
+
+  }
+
   int shiftItemsToInsert(value) {
     var i = ptr;
     while (i != 0) {

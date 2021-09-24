@@ -8,5 +8,7 @@ void main() {
   q.add(4);
   q.add(3);
   q.add(1);
+
+  print(q.remove());
   print(q);
 }
