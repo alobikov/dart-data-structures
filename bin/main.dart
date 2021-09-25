@@ -1,14 +1,17 @@
 import './balanced_expression.dart';
 import './list_queue.dart';
 import './priority_queue.dart';
+import './hash_table.dart';
 
 void main() {
-  var q = PriorityQueue(5);
-  q.add(2);
-  q.add(4);
-  q.add(3);
-  q.add(1);
 
-  print(q.remove());
-  print(q);
+  var table = HashTable<String>();
+  table.put(1,'one');
+  table.put(6,'two');
+  print(table);
+  print(table.get(6));
+  print(table.get(1));
+  print(table.get(11));
+  table.remove(1);
+  print(table);
 }
