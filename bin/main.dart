@@ -8,9 +8,10 @@ void main() {
   var table = HashTable<String>();
   table.put(1,'one');
   table.put(6,'two');
-  table.put(6,'three');
+  table.put(3,'three');
+  table.put(6,'six');
   print(table);
-  print(table.get(6));
-  print(table.get(1));
+  print(table.remove(1));
+  print(table);
 
 }

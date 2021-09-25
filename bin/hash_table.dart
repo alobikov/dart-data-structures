@@ -16,32 +16,47 @@ class HashTable<T> {
   var hashTable = List<LinkedList<Entry<T>>?>.filled(5, null);
 
   void put(int key, T value) {
-    var idx = key % 5;
-    var ll = hashTable[idx] ?? LinkedList<Entry<T>>();
-    for (var entry in ll) {
-      if (entry.key == key) {
-        entry.value = value;
-        return;
-      }
+    var bucket = getBucket(key);
+    bucket = bucket ?? LinkedList<Entry<T>>();
+
+    var entry = getEntry(bucket, key);
+    if (entry == null) {
+      bucket.add(Entry(key, value));
+    } else {
+      entry.value = value;
     }
-    ll.add(Entry(key, value));
-    hashTable[idx] = ll;
+    hashTable[hash(key)] = bucket;
   }
 
   T? get(int key) {
-    var idx = key % 5;
-    if (hashTable[idx] == null) return null;
-    var result = hashTable[idx]!
-        .singleWhere((e) => e.key == key, orElse: () => Entry(0, null));
-    return result.value;
+    var bucket = getBucket(key);
+    if (bucket == null) return null;
+    var entry = getEntry(bucket, key);
+    if (entry == null) return null;
+    return entry.value;
   }
 
   bool remove(int key) {
-    var mod = key % 5;
-    var ll = hashTable[mod];
-    if (ll == null) return false;
-    ll.remove(ll.firstWhere((e) => e.key == key));
-    return true;
+    var bucket = getBucket(key);
+    if (bucket == null) return false;
+    var entry = getEntry(bucket, key);
+    if (entry == null) return false;
+    if (bucket.length == 1) {
+      hashTable[hash(key)] = null;
+      return true;
+    }
+    return bucket.remove(entry);
+  }
+
+  hash(n) => n % hashTable.length;
+
+  getBucket(n) => hashTable[hash(n)];
+
+  getEntry(bucket, key) {
+    for (var e in bucket) {
+      if(e.key == key) return e;
+    }
+    return null;
   }
 
   @override
