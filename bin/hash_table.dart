@@ -17,17 +17,22 @@ class HashTable<T> {
 
   void put(int key, T value) {
     var idx = key % 5;
-    var ll = hashTable[idx];
-    ll ??= LinkedList<Entry<T>>();
+    var ll = hashTable[idx] ?? LinkedList<Entry<T>>();
+    for (var entry in ll) {
+      if (entry.key == key) {
+        entry.value = value;
+        return;
+      }
+    }
     ll.add(Entry(key, value));
     hashTable[idx] = ll;
   }
 
   T? get(int key) {
     var idx = key % 5;
-   if (hashTable[idx] == null) return null;
-   var result = hashTable[idx]!.singleWhere((e) => e.key == key,
-        orElse: () => Entry(0,null));
+    if (hashTable[idx] == null) return null;
+    var result = hashTable[idx]!
+        .singleWhere((e) => e.key == key, orElse: () => Entry(0, null));
     return result.value;
   }
 
