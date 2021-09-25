@@ -7,11 +7,11 @@ import './tree.dart';
 void main() {
   var tree = Tree();
   tree.insert(7);
-  tree.insert(10);
+  tree.insert(9);
   tree.insert(4);
   tree.insert(8);
-  tree.insert(11);
-  print(tree.find(12));
-  print(tree.find(11));
-  print('done');
+  tree.insert(10);
+  tree.insert(1);
+  tree.insert(6);
+  print(tree.traversePreOrder());
 }

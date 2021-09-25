@@ -53,4 +53,18 @@ class Tree {
     }
     return false;
   }
+
+  List traversePreOrder() {
+    var node = root;
+    var lst=[];
+    _traversePreOrder(node,lst);
+    return lst;
+  }
+
+  _traversePreOrder(node,lst) {
+    if (node == null) return lst;
+    lst.add(node.data);
+    _traversePreOrder(node.left,lst);
+    _traversePreOrder(node.right,lst);
+  }
 }
