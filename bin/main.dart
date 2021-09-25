@@ -2,16 +2,16 @@ import './balanced_expression.dart';
 import './list_queue.dart';
 import './priority_queue.dart';
 import './hash_table.dart';
+import './tree.dart';
 
 void main() {
-
-  var table = HashTable<String>();
-  table.put(1,'one');
-  table.put(6,'two');
-  table.put(3,'three');
-  table.put(6,'six');
-  print(table);
-  print(table.remove(1));
-  print(table);
-
+  var tree = Tree();
+  tree.insert(7);
+  tree.insert(10);
+  tree.insert(4);
+  tree.insert(8);
+  tree.insert(11);
+  print(tree.find(12));
+  print(tree.find(11));
+  print('done');
 }
