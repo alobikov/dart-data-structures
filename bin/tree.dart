@@ -108,7 +108,7 @@ class Tree {
   }
 
   _height(node) {
-    if (isLeaf(node)) return 0;
+    if (node.left == null && node.right == null) return 0;
     return 1 + math.max(_height(node.left), _height(node.right));
   }
 
