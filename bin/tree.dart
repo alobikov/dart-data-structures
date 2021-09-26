@@ -13,6 +13,8 @@ class Node {
 
 class Tree {
   Node? root;
+  num infinity = double.infinity;
+  num negInfinity = -double.infinity;
 
   void insert(int data) {
     if (root == null) {
@@ -127,7 +129,8 @@ class Tree {
     return math.min(math.min(left, right), node.data);
   }
 
-  bool? equals(Tree other) {
+  bool? equals(Tree? other) {
+    if (other == null) return false;
     return _equals(root, other.root);
   }
 
@@ -139,5 +142,17 @@ class Tree {
           _equals(root!.right, otherRoot!.right);
     }
     return false;
+  }
+
+  bool? isBinarySearchTree() {
+    return _validate(root, negInfinity, infinity);
+  }
+
+  _validate(node, min, max) {
+    if (node == null) return true;
+    print(node.data);
+    return node.data < max && node.data > min &&
+        _validate(node!.left, negInfinity, (node!.data)) &&
+        _validate(node!.right, (node!.data), infinity);
   }
 }
