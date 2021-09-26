@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 class Node {
   Node? left;
@@ -64,7 +64,7 @@ class Tree {
   }
 
   _traversePreOrder(node, lst) {
-    if (node == null)  return lst;
+    if (node == null) return lst;
     lst.add(node.data);
     _traversePreOrder(node.left, lst);
     _traversePreOrder(node.right, lst);
@@ -105,8 +105,25 @@ class Tree {
     return _height(root);
   }
 
-  _height(node){
-    if (node.left == null && node.right==null) return 0;
-    return 1 + max(_height(node.left),_height(node.right));
+  _height(node) {
+    if (isLeaf(node)) return 0;
+    return 1 + math.max(_height(node.left), _height(node.right));
+  }
+
+  bool isLeaf(node) {
+    return (node.left == null && node.right == null);
+  }
+
+// O(n)
+  int min() {
+    if (root == null) return -1;
+    return _min(root!);
+  }
+
+  int _min(Node node) {
+    if (isLeaf(node)) return node.data;
+    var left = _min(node.left!);
+    var right = _min(node.right!);
+    return math.min(math.min(left, right), node.data);
   }
 }

@@ -17,4 +17,5 @@ void main() {
   tree.invert();
   print(tree.traversePreOrder());
   print(tree.height());
+  print(tree.min());
 }
