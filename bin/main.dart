@@ -14,8 +14,18 @@ void main() {
   tree.insert(1);
   tree.insert(6);
   print(tree.traversePostOrder());
-  tree.invert();
   print(tree.traversePreOrder());
   print(tree.height());
   print(tree.min());
+
+  var tree1 = Tree();
+  tree1.insert(7);
+  tree1.insert(9);
+  tree1.insert(4);
+  tree1.insert(8);
+  tree1.insert(10);
+  tree1.insert(1);
+  tree1.insert(6);
+
+  print(tree.equals(tree1));
 }

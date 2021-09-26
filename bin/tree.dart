@@ -126,4 +126,18 @@ class Tree {
     var right = _min(node.right!);
     return math.min(math.min(left, right), node.data);
   }
+
+  bool? equals(Tree other) {
+    return _equals(root, other.root);
+  }
+
+  _equals(root, otherRoot) {
+    if (otherRoot == null && root == null) return true;
+    if (otherRoot != null && root != null) {
+      return root.data == otherRoot.data &&
+          _equals(root!.left, otherRoot!.left) &&
+          _equals(root!.right, otherRoot!.right);
+    }
+    return false;
+  }
 }
