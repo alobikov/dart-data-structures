@@ -14,4 +14,6 @@ void main() {
   tree.insert(1);
   tree.insert(6);
   print(tree.traversePreOrder());
+  tree.invert();
+  print(tree.traversePreOrder());
 }

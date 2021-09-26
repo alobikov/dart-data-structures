@@ -82,5 +82,19 @@ class Tree {
     lst.add(node.data);
   }
 
+  void invert() {
+    var node = root;
+    if (node== null) return ;
+    _invert(node);
+  }
+
+  void _invert(node) {
+    if (node == null) return;
+    var tmp = node.left;
+    node.left = node.right;
+    node.right = tmp;
+    _invert(node.left);
+    _invert(node.right);
+  }
 
 }
