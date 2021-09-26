@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Node {
   Node? left;
   Node? right;
@@ -56,35 +58,36 @@ class Tree {
 
   List traversePreOrder() {
     var node = root;
-    var lst=[];
-    _traversePreOrder(node,lst);
+    var lst = [];
+    _traversePreOrder(node, lst);
     return lst;
   }
 
-  _traversePreOrder(node,lst) {
-    if (node == null) return lst;
+  _traversePreOrder(node, lst) {
+    if (node == null)  return lst;
     lst.add(node.data);
-    _traversePreOrder(node.left,lst);
-    _traversePreOrder(node.right,lst);
+    _traversePreOrder(node.left, lst);
+    _traversePreOrder(node.right, lst);
   }
 
   List traversePostOrder() {
     var node = root;
-    var lst=[];
-    _traversePostOrder(node,lst);
+    var lst = [];
+    var i = 0;
+    _traversePostOrder(node, lst);
     return lst;
   }
 
-  _traversePostOrder(node,lst) {
+  _traversePostOrder(node, lst) {
     if (node == null) return lst;
-    _traversePostOrder(node.left,lst);
-    _traversePostOrder(node.right,lst);
+    _traversePostOrder(node.left, lst);
+    _traversePostOrder(node.right, lst);
     lst.add(node.data);
   }
 
   void invert() {
     var node = root;
-    if (node== null) return ;
+    if (node == null) return;
     _invert(node);
   }
 
@@ -97,4 +100,13 @@ class Tree {
     _invert(node.right);
   }
 
+  int height() {
+    if (root == null) return -1;
+    return _height(root);
+  }
+
+  _height(node){
+    if (node.left == null && node.right==null) return 0;
+    return 1 + max(_height(node.left),_height(node.right));
+  }
 }

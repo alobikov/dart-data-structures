@@ -13,7 +13,8 @@ void main() {
   tree.insert(10);
   tree.insert(1);
   tree.insert(6);
-  print(tree.traversePreOrder());
+  print(tree.traversePostOrder());
   tree.invert();
   print(tree.traversePreOrder());
+  print(tree.height());
 }
