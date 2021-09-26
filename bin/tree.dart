@@ -67,4 +67,20 @@ class Tree {
     _traversePreOrder(node.left,lst);
     _traversePreOrder(node.right,lst);
   }
+
+  List traversePostOrder() {
+    var node = root;
+    var lst=[];
+    _traversePostOrder(node,lst);
+    return lst;
+  }
+
+  _traversePostOrder(node,lst) {
+    if (node == null) return lst;
+    _traversePostOrder(node.left,lst);
+    _traversePostOrder(node.right,lst);
+    lst.add(node.data);
+  }
+
+
 }
