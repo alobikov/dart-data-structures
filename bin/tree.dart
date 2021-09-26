@@ -151,8 +151,30 @@ class Tree {
   _validate(node, min, max) {
     if (node == null) return true;
     print(node.data);
-    return node.data < max && node.data > min &&
+    return node.data < max &&
+        node.data > min &&
         _validate(node!.left, negInfinity, (node!.data)) &&
         _validate(node!.right, (node!.data), infinity);
+  }
+
+  List? getNodesAtKDistance(distance) {
+    var lst = [];
+    if (root == null) return lst;
+    if (distance == 0) return [root!.data];
+    return _getNodes(root, distance, lst);
+  }
+
+  _getNodes(node, distance, lst) {
+    if (distance == 0) {
+      lst.add(node.data);
+      return lst;
+    }
+    if (node.left != null) {
+      _getNodes(node.left, distance - 1, lst);
+    }
+    if (node.right != null) {
+      _getNodes(node.right, distance - 1, lst);
+    }
+    return lst;
   }
 }

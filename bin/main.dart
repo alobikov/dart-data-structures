@@ -25,6 +25,5 @@ void main() {
   tree1.insert(1);
   tree1.insert(6);
 
-  tree.invert();
-  print(tree.isBinarySearchTree());
+  print('result: ${tree.getNodesAtKDistance(4)}');
 }
