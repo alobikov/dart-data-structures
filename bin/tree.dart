@@ -157,7 +157,7 @@ class Tree {
         _validate(node!.right, (node!.data), infinity);
   }
 
-  List? getNodesAtKDistance(distance) {
+  List? getNodesAtDistance(distance) {
     var lst = [];
     if (root == null) return lst;
     if (distance == 0) return [root!.data];
@@ -165,16 +165,13 @@ class Tree {
   }
 
   _getNodes(node, distance, lst) {
+    if (node == null) return;
     if (distance == 0) {
       lst.add(node.data);
       return lst;
     }
-    if (node.left != null) {
-      _getNodes(node.left, distance - 1, lst);
-    }
-    if (node.right != null) {
-      _getNodes(node.right, distance - 1, lst);
-    }
+    _getNodes(node.left, distance - 1, lst);
+    _getNodes(node.right, distance - 1, lst);
     return lst;
   }
 }

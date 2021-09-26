@@ -25,5 +25,5 @@ void main() {
   tree1.insert(1);
   tree1.insert(6);
 
-  print('result: ${tree.getNodesAtKDistance(4)}');
+  print('result: ${tree.getNodesAtDistance(3)}');
 }
