@@ -207,7 +207,25 @@ class Tree {
     if (node.data < data) {
       return _contains(node.left, data);
     } else {
-      return _contains(node.left, data);
+      return _contains(node.right, data);
+    }
+  }
+
+  bool areSibling(int a, int b) {
+    if (root == null) return false;
+    return _areSibling(root, math.min(a, b), math.max(a, b));
+  }
+
+  _areSibling(Node? node, int a, int b) {
+    if (node == null) return false;
+    if (node.left?.data == a &&
+        node.right?.data == b) {
+    return true;
+    }
+    if (node.data > a ) {
+    return _areSibling(node.left, a, b);
+    } else {
+    return _areSibling(node.right, a, b);
     }
   }
 }

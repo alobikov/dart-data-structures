@@ -32,4 +32,7 @@ void main() {
   print('contains $search:, ${tree.contains(search)}');
   search = 5;
   print('contains $search:, ${tree.contains(search)}');
+
+  print('areSibling 4 and 9: ${tree.areSibling(9,4)}');
+  print('areSibling 1 and 6: ${tree.areSibling(1,6)}');
 }
