@@ -26,4 +26,5 @@ void main() {
   tree1.insert(6);
 
   print('result: ${tree.getNodesAtDistance(3)}');
+  print('tree size: ${tree.treeSize()}');
 }

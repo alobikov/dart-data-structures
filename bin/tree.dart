@@ -75,7 +75,6 @@ class Tree {
   List traversePostOrder() {
     var node = root;
     var lst = [];
-    var i = 0;
     _traversePostOrder(node, lst);
     return lst;
   }
@@ -173,5 +172,15 @@ class Tree {
     _getNodes(node.left, distance - 1, lst);
     _getNodes(node.right, distance - 1, lst);
     return lst;
+  }
+
+  int treeSize() {
+    if (root == null) return 0;
+    return _treeSize(root);
+  }
+
+  _treeSize(node) {
+    if (node == null) return 0;
+    return  1 + _treeSize(node.left) + _treeSize(node.right);
   }
 }
