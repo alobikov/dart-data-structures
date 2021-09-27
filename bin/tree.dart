@@ -218,14 +218,31 @@ class Tree {
 
   _areSibling(Node? node, int a, int b) {
     if (node == null) return false;
-    if (node.left?.data == a &&
-        node.right?.data == b) {
-    return true;
+    if (node.left?.data == a && node.right?.data == b) {
+      return true;
     }
-    if (node.data > a ) {
-    return _areSibling(node.left, a, b);
+    if (node.data > a) {
+      return _areSibling(node.left, a, b);
     } else {
-    return _areSibling(node.right, a, b);
+      return _areSibling(node.right, a, b);
+    }
+  }
+
+  List getAncestors(int data) {
+    if (root == null) return [];
+    var lst = <Node>[];
+    _getAncestors(root, data, lst);
+    return lst;
+  }
+
+  _getAncestors(Node? node, int key, List<Node> lst) {
+    if (node == null) return [];
+    if (node.data == key) return lst;
+    lst.add(node);
+    if (node.data > key) {
+      return _getAncestors(node.left, key, lst);
+    } else {
+      return _getAncestors(node.right, key, lst);
     }
   }
 }

@@ -25,7 +25,7 @@ void main() {
   tree1.insert(1);
   tree1.insert(6);
 
-  print('result: ${tree.getNodesAtDistance(3)}');
+  print('node at distance 3: ${tree.getNodesAtDistance(3)}');
   print('tree size: ${tree.treeSize()}');
   print('leaves count: ${tree.countLeaves()}');
   var search = 4;
@@ -35,4 +35,7 @@ void main() {
 
   print('areSibling 4 and 9: ${tree.areSibling(9,4)}');
   print('areSibling 1 and 6: ${tree.areSibling(1,6)}');
+
+  var child = 8;
+  print('ancestors of $child: ${tree.getAncestors(child)}');
 }
