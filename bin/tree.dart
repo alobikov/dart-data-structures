@@ -181,7 +181,7 @@ class Tree {
 
   _treeSize(node) {
     if (node == null) return 0;
-    return  1 + _treeSize(node.left) + _treeSize(node.right);
+    return 1 + _treeSize(node.left) + _treeSize(node.right);
   }
 
   int countLeaves() {
@@ -191,7 +191,23 @@ class Tree {
 
   _countLeaves(node) {
     if (node == null) return 0;
-    if (!isLeaf(node)) return _countLeaves(node.left) + _countLeaves(node.right);
+    if (!isLeaf(node))
+      return _countLeaves(node.left) + _countLeaves(node.right);
     return 1 + _countLeaves(node.left) + _countLeaves(node.right);
+  }
+
+  bool contains(int data) {
+    if (root == null) return false;
+    return _contains(root, data);
+  }
+
+  _contains(Node? node, int data) {
+    if (node == null) return false;
+    if (node.data == data) return true;
+    if (node.data < data) {
+      return _contains(node.left, data);
+    } else {
+      return _contains(node.left, data);
+    }
   }
 }

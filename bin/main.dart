@@ -28,4 +28,8 @@ void main() {
   print('result: ${tree.getNodesAtDistance(3)}');
   print('tree size: ${tree.treeSize()}');
   print('leaves count: ${tree.countLeaves()}');
+  var search = 4;
+  print('contains $search:, ${tree.contains(search)}');
+  search = 5;
+  print('contains $search:, ${tree.contains(search)}');
 }
