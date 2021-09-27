@@ -12,8 +12,8 @@ void main() {
   tree.insert(8);
   tree.insert(1);
   tree.insert(6);
-  tree.insert(10);
-  tree.insert(12);
+  // tree.insert(10);
+  // tree.insert(12);
   print(tree.traversePreOrder());
 
   var tree1 = Tree();
@@ -27,4 +27,5 @@ void main() {
 
   print('result: ${tree.getNodesAtDistance(3)}');
   print('tree size: ${tree.treeSize()}');
+  print('leaves count: ${tree.countLeaves()}');
 }

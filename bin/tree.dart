@@ -183,4 +183,15 @@ class Tree {
     if (node == null) return 0;
     return  1 + _treeSize(node.left) + _treeSize(node.right);
   }
+
+  int countLeaves() {
+    if (root == null) return 0;
+    return _countLeaves(root);
+  }
+
+  _countLeaves(node) {
+    if (node == null) return 0;
+    if (!isLeaf(node)) return _countLeaves(node.left) + _countLeaves(node.right);
+    return 1 + _countLeaves(node.left) + _countLeaves(node.right);
+  }
 }
