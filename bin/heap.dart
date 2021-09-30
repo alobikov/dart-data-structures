@@ -10,13 +10,14 @@ class Heap {
     bubbleUp(size-1);
   }
 
-  bool remove() {
-    if (size == 0) return false;
+  int? remove() {
+    if (size == 0) return null;
+    var removedValue = heap[0];
     heap[0] = heap[size-1];
     heap[size-1] = 0;
     size--;
     bubbleDown(0);
-    return true;
+    return removedValue;
   }
 
   bool isNodeProper(int idx) {
