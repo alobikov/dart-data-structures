@@ -21,4 +21,15 @@ void main() {
   print('resulting heap: $heap');
   heap.remove();
   print('result after remove(): $heap');
+
+  var unsortedList = [12, 322, 2, 54, 9, 0, 1, 11];
+  print('unsorted array: $unsortedList');
+  var heap1 = Heap();
+  for (var v in unsortedList) {
+    heap1.insert(v);
+  }
+
+  var sortedList = unsortedList.map((v) => heap1.remove());
+  print('sorted via hip insert/remove, $sortedList');
+
 }
