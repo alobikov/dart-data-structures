@@ -2,19 +2,50 @@ import 'dart:math' as math;
 import 'dart:core';
 
 class Heap {
-  var heap = List.filled(15,0);
+  var heap = List.filled(15, 0);
   int size = 0;
 
+  List heapify(List lst) {
+    for (var i = lst.length~/2 - 1; i >= 0; i--)  {
+      _heapify(i, lst);
+    }
+    return lst;
+  }
+
+  _heapify(int idx, List lst) {
+    var lagerIdx = idx;
+
+    var leftIdx = idx * 2 + 1;
+    if (leftIdx < lst.length && lst[leftIdx] > lst[lagerIdx]) {
+      lagerIdx = leftIdx;
+    }
+
+    var rightIdx = idx * 2 + 2;
+    if (rightIdx < lst.length && lst[rightIdx] > lst[lagerIdx]) {
+      lagerIdx = rightIdx;
+    }
+
+    if (idx == lagerIdx) return;
+    swap(lst, idx,lagerIdx);
+    _heapify(lagerIdx, lst);
+  }
+
+  swap(List lst, int idx, int idx1) {
+    var tmp = lst[idx1];
+    lst[idx1] = lst[idx];
+    lst[idx] = tmp;
+  }
+
   void insert(int value) {
-    heap[size++]=value;
-    bubbleUp(size-1);
+    heap[size++] = value;
+    bubbleUp(size - 1);
   }
 
   int? remove() {
     if (size == 0) return null;
     var removedValue = heap[0];
-    heap[0] = heap[size-1];
-    heap[size-1] = 0;
+    heap[0] = heap[size - 1];
+    heap[size - 1] = 0;
     size--;
     bubbleDown(0);
     return removedValue;
@@ -40,7 +71,7 @@ class Heap {
       if (heap[leftIdx(idx)] > heap[idx]) {
         swapNodes(idx, leftIdx(idx));
       }
-      return ;
+      return;
     }
 
     if (heap[leftIdx(idx)] > heap[rightIdx(idx)]) {

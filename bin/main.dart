@@ -31,5 +31,9 @@ void main() {
 
   var sortedList = unsortedList.map((v) => heap1.remove());
   print('sorted via hip insert/remove, $sortedList');
+  var lst1 = [3,15, 10, 8, 1,12, 9, 4, 24];
+  var lst2 =[5,3,8,4,1,2];
+  heap.heapify(lst2);
+  print(lst2);
 
 }
