@@ -12,6 +12,8 @@ void main() {
   // trie.insert('can');
   trie.insert('cat');
   trie.insert('canada');
+
   print(trie.contains('canada'));
   print(trie.contains('can'));
+  trie.traverse();
 }

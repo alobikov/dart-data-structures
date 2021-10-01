@@ -19,6 +19,16 @@ class Node {
     return children[char];
   }
 
+  List toArray() {
+    List result = [];
+    children.forEach((k, v) {
+      result.add(v);
+    }
+    );
+    return
+      result;
+  }
+
   @override
   String toString() => value;
 }
@@ -49,5 +59,17 @@ class Trie {
       current = current.getChild(char)!;
     }
     return current.isEndOfWord;
+  }
+
+  void traverse() {
+    return _traverse(root);
+  }
+
+  void _traverse(Node node) {
+    var nodes = node.toArray();
+    print(node);
+    for (var node in nodes) {
+      _traverse(node);
+    }
   }
 }
