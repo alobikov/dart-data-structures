@@ -6,7 +6,7 @@ class Heap {
   int size = 0;
 
   List heapify(List lst) {
-    for (var i = lst.length~/2 - 1; i >= 0; i--)  {
+    for (var i = lst.length ~/ 2 - 1; i >= 0; i--) {
       _heapify(i, lst);
     }
     return lst;
@@ -26,7 +26,7 @@ class Heap {
     }
 
     if (idx == lagerIdx) return;
-    swap(lst, idx,lagerIdx);
+    swap(lst, idx, lagerIdx);
     _heapify(lagerIdx, lst);
   }
 
