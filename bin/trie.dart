@@ -19,18 +19,20 @@ class Node {
     return children[char];
   }
 
+  remove(Node node) {
+    children.remove(node.value);
+  }
+
   List toArray() {
     List result = [];
     children.forEach((k, v) {
       result.add(v);
-    }
-    );
-    return
-      result;
+    });
+    return result;
   }
 
   @override
-  String toString() => value;
+  String toString() => '$value${isEndOfWord ? '.' : ''}';
 }
 
 class Trie {
@@ -61,6 +63,20 @@ class Trie {
     return current.isEndOfWord;
   }
 
+  List<Node>? getNodes(String word) {
+    var current = root;
+    List<Node> result = [];
+
+    for (var char in word.split('')) {
+      if (!current.hasChild(char)) {
+        return null;
+      }
+      current = current.getChild(char)!;
+      result.add(current);
+    }
+    return result;
+  }
+
   void traverse() {
     return _traverse(root);
   }
@@ -71,5 +87,23 @@ class Trie {
     for (var node in nodes) {
       _traverse(node);
     }
+  }
+
+ // TODO implement it with recursion
+  void remove(String word) {
+    var nodes = getNodes(word);
+    while (nodes!.isNotEmpty) {
+      if (hasNoChildren(nodes.last)) {
+        var removedNode = nodes.removeLast();
+        nodes.last.remove(removedNode);
+      } else {
+        nodes.last.isEndOfWord = false;
+        return;
+      }
+    }
+  }
+
+  bool hasNoChildren(Node node) {
+    return node.toArray().isEmpty;
   }
 }

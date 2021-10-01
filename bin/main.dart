@@ -16,4 +16,6 @@ void main() {
   print(trie.contains('canada'));
   print(trie.contains('can'));
   trie.traverse();
+  trie.remove('can');
+  trie.traverse();
 }
