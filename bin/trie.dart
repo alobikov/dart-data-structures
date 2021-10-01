@@ -1,11 +1,23 @@
+import 'dart:collection';
+
 class Node {
   String value;
-  var children = List<Node?>.filled(ALPHABET_SIZE, null);
+  var children = HashMap<String,Node>();
   bool isEndOfWord = false;
 
-  static const ALPHABET_SIZE = 26;
-
   Node(this.value);
+
+  bool hasChild(String char) {
+    return children.containsKey(char);
+  }
+
+  void addChild(String char) {
+    children[char] = Node(char);
+  }
+
+  Node? getChild(String char) {
+    return children[char];
+  }
 
   @override
   String toString() => value;
@@ -20,13 +32,12 @@ class Trie {
     var char = '';
 
     for (char in word.split('')) {
-      var idx = char.toLowerCase().codeUnits[0] - 'a'.codeUnits[0];
 
-      if (current.children[idx] == null) {
-        current.children[idx] = Node(char.toLowerCase());
+      if (!current.hasChild(char)) {
+        current.addChild(char.toLowerCase());
       }
 
-      current = current.children[idx]!;
+      current = current.getChild(char)!;
     }
     current.isEndOfWord = true;
   }
