@@ -2,7 +2,7 @@ import 'dart:collection';
 
 class Node {
   String value;
-  var children = HashMap<String,Node>();
+  var children = HashMap<String, Node>();
   bool isEndOfWord = false;
 
   Node(this.value);
@@ -27,12 +27,9 @@ class Trie {
   Node root = Node('');
 
   void insert(String word) {
-
     var current = root;
-    var char = '';
 
-    for (char in word.split('')) {
-
+    for (var char in word.split('')) {
       if (!current.hasChild(char)) {
         current.addChild(char.toLowerCase());
       }
@@ -40,5 +37,17 @@ class Trie {
       current = current.getChild(char)!;
     }
     current.isEndOfWord = true;
+  }
+
+  bool contains(String word) {
+    var current = root;
+
+    for (var char in word.split('')) {
+      if (!current.hasChild(char)) {
+        return false;
+      }
+      current = current.getChild(char)!;
+    }
+    return current.isEndOfWord;
   }
 }

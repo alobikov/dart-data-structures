@@ -9,6 +9,9 @@ import './trie.dart';
 void main() {
 
   var trie = Trie();
-  trie.insert('car');
+  // trie.insert('can');
   trie.insert('cat');
+  trie.insert('canada');
+  print(trie.contains('canada'));
+  print(trie.contains('can'));
 }
