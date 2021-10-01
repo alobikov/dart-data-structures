@@ -106,4 +106,34 @@ class Trie {
   bool hasNoChildren(Node node) {
     return node.toArray().isEmpty;
   }
+
+  List<String> autoCompletion(String word) {
+    List<String> words =[];
+    var current = root;
+
+    for (var char in word.split('')) {
+      if (!current.hasChild(char)) {
+        return words;
+      }
+      current = current.getChild(char)!;
+    }
+
+    if(current.isEndOfWord) {
+      words.add(word);
+    }
+
+    _autoCompletion(current, word, words);
+    return words;
+  }
+
+  _autoCompletion(Node node, String word, List<String> words){
+   var nodes = node.toArray();
+   for (var node in nodes) {
+     var newWord = word + node.value;
+     if (node.isEndOfWord) {
+       words.add(newWord);
+     }
+     _autoCompletion(node, newWord, words);
+   }
+  }
 }

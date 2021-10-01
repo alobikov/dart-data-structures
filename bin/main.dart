@@ -10,12 +10,13 @@ void main() {
 
   var trie = Trie();
   // trie.insert('can');
-  trie.insert('cat');
-  trie.insert('canada');
+  trie.insert('car');
+  trie.insert('care');
+  trie.insert('careful');
+  trie.insert('careless');
+  trie.insert('card');
+  trie.insert('egg');
 
-  print(trie.contains('canada'));
-  print(trie.contains('can'));
-  trie.traverse();
-  trie.remove('can');
-  trie.traverse();
+ print(trie.autoCompletion('car'));
+
 }
