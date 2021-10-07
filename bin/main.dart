@@ -35,4 +35,8 @@ void main() {
   s.addEdge('B', 'P');
 
   print(s.topologicalSort());
+
+  print(g.hasCycle());
+  g.addEdge('D', 'A');
+  print(g.hasCycle());
 }

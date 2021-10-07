@@ -78,7 +78,7 @@ class Graph {
     Queue<Node> stack = Queue();
     Set<Node> visited = {};
     for (var node in nodes.values) {
-    _topologicalSort(node,visited,stack);
+      _topologicalSort(node, visited, stack);
     }
     return List.from(stack.toList().reversed);
   }
@@ -86,10 +86,41 @@ class Graph {
   _topologicalSort(Node node, Set<Node> visited, Queue stack) {
     if (visited.contains(node)) return;
     visited.add(node);
-    for(var neighbour in adjacencyList[node]!) {
-      _topologicalSort(neighbour,visited,stack);
+    for (var neighbour in adjacencyList[node]!) {
+      _topologicalSort(neighbour, visited, stack);
     }
     stack.add(node);
+  }
+
+  bool hasCycle() {
+    var all = List<Node>.from(nodes.values);
+    print('all nodes $all');
+    var visiting = <Node>[];
+    var visited = <Node>[];
+    while (all.isNotEmpty) {
+      var current = all[0];
+      print('current $current');
+      if(_hasCycle(current, all, visiting, visited)) return true;
+    }
+    return false;
+  }
+
+  _hasCycle(
+      Node node, List<Node> all, List<Node> visiting, List<Node> visited) {
+    all.remove(node);
+    visiting.add(node);
+    print('visiting: $visiting');
+    for (var neighbour in adjacencyList[node]!) {
+      if (visited.contains(neighbour)) continue;
+
+      if (visiting.contains(neighbour)) return true;
+
+      if(_hasCycle(neighbour, all, visiting, visited)) return true;
+    }
+    visiting.remove(node);
+    visited.add(node);
+    print('visited: $visited');
+    return false;
   }
 
   void showList() {
