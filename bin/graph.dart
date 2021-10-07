@@ -74,6 +74,24 @@ class Graph {
     return result;
   }
 
+  List<Node> topologicalSort() {
+    Queue<Node> stack = Queue();
+    Set<Node> visited = {};
+    for (var node in nodes.values) {
+    _topologicalSort(node,visited,stack);
+    }
+    return List.from(stack.toList().reversed);
+  }
+
+  _topologicalSort(Node node, Set<Node> visited, Queue stack) {
+    if (visited.contains(node)) return;
+    visited.add(node);
+    for(var neighbour in adjacencyList[node]!) {
+      _topologicalSort(neighbour,visited,stack);
+    }
+    stack.add(node);
+  }
+
   void showList() {
     getBucket(Node node) => adjacencyList[node];
     nodes.forEach((k, node) {
