@@ -57,6 +57,23 @@ class Graph {
     }
   }
 
+  Set<Node> traverseBreadth(String label) {
+    var result = <Node>{};
+    var queue = Queue();
+    if (!nodes.containsKey(label)) return result;
+    Node node = nodes[label]!;
+    queue.add(node);
+    while (queue.isNotEmpty) {
+      Node current = queue.removeFirst();
+      result.add(current);
+      for (var neighbor in adjacencyList[current]!) {
+        if (result.contains(neighbor)) continue;
+        queue.add(neighbor);
+      }
+    }
+    return result;
+  }
+
   void showList() {
     getBucket(Node node) => adjacencyList[node];
     nodes.forEach((k, node) {
