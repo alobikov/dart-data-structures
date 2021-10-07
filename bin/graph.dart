@@ -42,6 +42,21 @@ class Graph {
     adjacencyList[node]!.remove(nodes[to]);
   }
 
+  Set<Node> traverse(String label) {
+    if (!nodes.containsKey(label)) return {};
+    var result = <Node>{};
+    _traverse(nodes[label]!, result);
+    return result;
+  }
+
+  _traverse(Node node, Set<Node> result) {
+    result.add(node);
+    if (adjacencyList[node]!.isEmpty) return;
+    for (var toNode in adjacencyList[node]!) {
+      _traverse(toNode, result);
+    }
+  }
+
   void showList() {
     getBucket(Node node) => adjacencyList[node];
     nodes.forEach((k, node) {

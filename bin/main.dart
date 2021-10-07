@@ -15,9 +15,10 @@ g.addNode('A');
 g.addNode('B');
 g.addNode('C');
 g.addNode('D');
-g.addEdge('A', 'D');
+g.addEdge('B', 'D');
 g.addEdge('A', 'B');
 g.addEdge('A', 'C');
-g.removeEdge('A','D');
+g.addEdge('D', 'C');
 g.showList();
+print(g.traverse('A'));
 }
