@@ -11,13 +11,13 @@ import './graph.dart';
 void main() {
 
 var g = Graph();
-g.addNode('test1');
-g.addNode('test2');
-g.addNode('test3');
-g.addNode('test4');
-g.addEdge('test1', 'test2');
-g.addEdge('test1', 'test3');
-g.addEdge('test1', 'test4');
-g.removeEdge('test1','test2');
+g.addNode('A');
+g.addNode('B');
+g.addNode('C');
+g.addNode('D');
+g.addEdge('A', 'D');
+g.addEdge('A', 'B');
+g.addEdge('A', 'C');
+g.removeEdge('A','D');
 g.showList();
 }

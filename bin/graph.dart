@@ -11,39 +11,40 @@ class Node {
 
 class Graph {
   var adjacencyList = HashMap<Node, List<Node>>();
-  var map = HashMap<String, Node>();
+  var nodes = HashMap<String, Node>();
 
   void addNode(String label) {
     var node = Node(label);
-    map.putIfAbsent(label, () => node);
+    nodes.putIfAbsent(label, () => node);
     adjacencyList.putIfAbsent(node, () => <Node>[]);
   }
 
   void removeNode(label) {
-    if (!map.containsKey(label)) return;
-    Node node = map[label]!;
-    map.remove(label);
+    if (!nodes.containsKey(label)) return;
+    Node node = nodes[label]!;
+    nodes.remove(label);
     adjacencyList.forEach((key, value) {
-      value.removeWhere((element) => element == node);
+      value.remove(node);
     });
+    adjacencyList.remove(node);
   }
 
   void addEdge(String from, String to) {
-    if (!map.containsKey(from) || !map.containsKey(to)) return;
-    Node toNode = map[to]!;
-    var node = map[from];
+    if (!nodes.containsKey(from) || !nodes.containsKey(to)) return;
+    Node toNode = nodes[to]!;
+    var node = nodes[from];
     adjacencyList[node]!.add(toNode);
   }
 
   void removeEdge(String from, String to) {
-    if (!map.containsKey(from) || !map.containsKey(to)) return;
-    Node node = map[from]!;
-    adjacencyList[node]!.remove(map[to]);
+    if (!nodes.containsKey(from) || !nodes.containsKey(to)) return;
+    Node node = nodes[from]!;
+    adjacencyList[node]!.remove(nodes[to]);
   }
 
   void showList() {
     getBucket(Node node) => adjacencyList[node];
-    map.forEach((k, node) {
+    nodes.forEach((k, node) {
       var bucket = getBucket(node);
       if (bucket!.isNotEmpty) {
         print('$k is connected with ${getBucket(node)}');
